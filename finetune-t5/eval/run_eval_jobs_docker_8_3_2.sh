@@ -9,7 +9,8 @@
     # eval_batch $8
 ##############################
 
-source ../SETUP_DOCKER_ENV.sh
+# source ../SETUP_DOCKER_ENV.sh
+source SETUP_DOCKER_ENV.sh
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 MAIN_PROCESS_PORT=20655
@@ -43,7 +44,8 @@ echo "checkpoint result dir: ${RESULT_DIR_ROOT}"
 MODEL_PATH_NAME="7_30_multitask_mixture_mulcqa_n_2_c4_5percent_30aug_latent_64_FrozenAugEncoder"
 for TASK_NAME in "hellaswag"
 do
-    bash run_eval_finetuned_mixture_xattn.sh \
+    # bash run_eval_finetuned_mixture_xattn.sh \
+    bash ./eval/run_eval_finetuned_mixture_xattn.sh \
     ${TASK_NAME} \
     "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
     "${RESULT_DIR_ROOT}/${MODEL_PATH_NAME}" \
