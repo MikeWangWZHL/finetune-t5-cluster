@@ -1,0 +1,8 @@
+### Evaluation
+1. example of running command
+    
+    - `python eval.py --tokenizer_name bigscience/T0 --model_name_or_path <model_path> --processed_dataset_paths /workspace/data/bigscience_P3/wiki_qa_Decide_good_answer /workspace/data/bigscience_P3/qasc_is_correct_1 /workspace/data/bigscience_P3/quarel_choose_between /workspace/data/bigscience_P3/quartz_answer_question_based_on /workspace/data/bigscience_P3/sciq_Direct_Question_Closed_Book_ /workspace/data/bigscience_P3/anli_GPT_3_style_r1 /workspace/data/bigscience_P3/super_glue_cb_GPT_3_style /workspace/data/bigscience_P3/super_glue_rte_GPT_3_style /workspace/data/bigscience_P3/glue_mrpc_equivalent /workspace/data/bigscience_P3/paws_labeled_final_Concatenation --output_dir <output_dir>`
+
+    - eval every dataset individually: `accelerate launch ../eval/eval.py --tokenizer_name bigscience/T0 --processed_dataset_paths /data/home/xiaomanpan/data/20220601_wic_icl/datasets/5examples_front_no_eos/* --model_name_or_path debug/icl/large/5examples_front_no_eos_40_epoch/step_67880 --output_dir debug/test/ --per_device_eval_batch_size 32`
+
+    - eval all dataset average: `accelerate launch ../eval/eval.py --tokenizer_name bigscience/T0 --processed_dataset_paths /data/home/xiaomanpan/data/20220601_wic_icl/datasets/5examples_front_no_eos/* --model_name_or_path debug/icl/large/5examples_front_no_eos_40_epoch/step_67880 --output_dir debug/test/ --per_device_eval_batch_size 32 --eval_average`
