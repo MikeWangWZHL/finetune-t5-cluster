@@ -6,6 +6,7 @@
     # CUDA_VISIBLE_DEVICES=$5 
     # --main_process_port $6 
     # --num_processes $7
+    # eval_bs $8
 #####
 
 source ../SETUP_ENV.sh

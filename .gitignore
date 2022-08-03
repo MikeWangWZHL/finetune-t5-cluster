@@ -2,3 +2,4 @@ results/
 data/
 finetune-t5/output
 cache_for_docker/
+_archive
