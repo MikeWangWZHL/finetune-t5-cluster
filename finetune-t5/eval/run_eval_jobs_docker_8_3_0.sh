@@ -26,8 +26,22 @@ echo "checkpoint result dir: ${RESULT_DIR_ROOT}"
 
 
 
+# MODEL_PATH_NAME="7_30_multitask_mixture_mulcqa_n_2_c4_5percent_10aug_latent_64"
+# for TASK_NAME in "openbookqa_main" "piqa" "super_glue_wic" "super_glue_cb" "super_glue_copa" "rotten_tomatoes" "wiki_qa" "hellaswag"
+# do
+#     bash run_eval_finetuned_mixture_xattn.sh \
+#     ${TASK_NAME} \
+#     "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
+#     "${RESULT_DIR_ROOT}/${MODEL_PATH_NAME}" \
+#     "${OUTPUT_SRC_ROOT}/eval/run_eval_jobs_docker_8_3_0/${MODEL_PATH_NAME}/${TASK_NAME}" \
+#     ${CUDA_VISIBLE_DEVICES} \
+#     ${MAIN_PROCESS_PORT} \
+#     ${NUM_PROCESSES} \
+#     16 # eval batch size
+# done
+
 MODEL_PATH_NAME="7_30_multitask_mixture_mulcqa_n_2_c4_5percent_10aug_latent_64"
-for TASK_NAME in "openbookqa_main" "piqa" "super_glue_wic" "super_glue_cb" "super_glue_copa" "rotten_tomatoes" "wiki_qa" "hellaswag"
+for TASK_NAME in "hellaswag"
 do
     bash run_eval_finetuned_mixture_xattn.sh \
     ${TASK_NAME} \
@@ -37,5 +51,5 @@ do
     ${CUDA_VISIBLE_DEVICES} \
     ${MAIN_PROCESS_PORT} \
     ${NUM_PROCESSES} \
-    16 # eval batch size
+    4 # eval batch size
 done
