@@ -50,7 +50,7 @@ WANDB_RUN_NAME=$9
 
 GRADIENT_ACCUMULATION_STEPS=${15}
 
-CUDA_VISIBLE_DEVICES=${10} accelerate launch --main_process_port ${11} --num_processes ${12} multi_task_fine_tune_xattn.py \
+CUDA_VISIBLE_DEVICES=${10} accelerate launch --main_process_port ${11} --num_processes ${12} ./training/multi_task_fine_tune_xattn.py \
     --model_architecture ${MODEL_ARCHITECTURE} \
     --max_length ${MAX_LENGTH} \
     --target_max_length ${TARGET_MAX_LENGTH} \

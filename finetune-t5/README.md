@@ -36,4 +36,8 @@ check if the image with name: `mirrors.tencent.com/ai-lab-seattle/mikeeewang_t0:
     `bash run_jobs_docker_7_30_4.sh`
 
 
+## [8/3]
+
+- job 8_3_0
+
 

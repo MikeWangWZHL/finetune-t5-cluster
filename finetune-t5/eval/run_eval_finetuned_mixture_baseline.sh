@@ -21,7 +21,7 @@ BS_EVAL=$8
 
 echo $DATASETS_PATHS
 
-CUDA_VISIBLE_DEVICES=$5 accelerate launch --main_process_port $6 --num_processes $7 eval_original_task_only.py \
+CUDA_VISIBLE_DEVICES=$5 accelerate launch --main_process_port $6 --num_processes $7 ./eval/eval_original_task_only.py \
     --processed_dataset_paths ${DATASETS_PATHS} \
     --model_name_or_path ${MODEL_PATH} \
     --step_num ${STEP_NUM} \

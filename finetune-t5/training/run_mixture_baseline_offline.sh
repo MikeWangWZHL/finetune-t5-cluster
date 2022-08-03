@@ -24,7 +24,7 @@ CONCAT_AUG_NUM=${10}
 
 GRADIENT_ACCUMULATION_STEPS=${14}
 
-CUDA_VISIBLE_DEVICES=${11} accelerate launch --main_process_port ${12} --num_processes ${13} multi_task_fine_tune_baseline.py \
+CUDA_VISIBLE_DEVICES=${11} accelerate launch --main_process_port ${12} --num_processes ${13} ./training/multi_task_fine_tune_baseline.py \
     --max_length ${MAX_LENGTH} \
     --target_max_length ${TARGET_MAX_LENGTH} \
     --dataset_dir_names ${DATASET_DIR_NAMES} \

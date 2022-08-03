@@ -25,7 +25,7 @@ echo "TRANSFORMERS_OFFLINE : ${TRANSFORMERS_OFFLINE}"
 MODEL_PATH_NAME="7_27_multitask_mixture_mulcqa_n_2_c4_5percent_concat_baseline/t5-base/7_27_multitask_mixture_mulcqa_n_2_c4_5percent_concat_baseline_5aug"
 for TASK_NAME in "openbookqa_main" "piqa" "super_glue_wic" "super_glue_cb" "super_glue_copa" "rotten_tomatoes" "hellaswag"
 do
-    bash run_eval_finetuned_mixture_baseline.sh \
+    bash ./eval/run_eval_finetuned_mixture_baseline.sh \
     ${TASK_NAME} \
     "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
     "${OUTPUT_SRC_ROOT}/eval/${MODEL_PATH_NAME}/${TASK_NAME}" \
