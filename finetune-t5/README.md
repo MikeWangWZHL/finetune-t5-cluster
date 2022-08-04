@@ -52,16 +52,25 @@ At the "/code" dir, run:
 ## [8/4 1:30pm] Experiments
 At the "/code" dir, run:
 
-- job 0: 5aug smaller learning rate + more epoch
-`bash run_jobs_docker_train_eval_8_4_0__learning_rate.sh`
-- job 1: longer per aug
-`bash run_jobs_docker_train_eval_8_4_1__fit_10_to_5aug_max_512_latent_64.sh`
-- job 2: longer per aug + larger latent
-`bash run_jobs_docker_train_eval_8_4_2__fit_10_to_5aug_max_512_latent_128.sh`
-- job 3: ablation: 5aug latent 128
-`bash run_jobs_docker_train_eval_8_4_3__5aug_latent_128.sh`
-- job 4: ablation: 5aug latent 32
-`bash run_jobs_docker_train_eval_8_4_4__5aug_latent_32.sh`
+- job 0: 5aug smaller learning rate + more epoch:
+
+    `bash run_jobs_docker_train_eval_8_4_0__learning_rate.sh`
+
+- job 1: longer per aug:
+
+    `bash run_jobs_docker_train_eval_8_4_1__fit_10_to_5aug_max_512_latent_64.sh`
+
+- job 2: longer per aug + larger latent:
+
+    `bash run_jobs_docker_train_eval_8_4_2__fit_10_to_5aug_max_512_latent_128.sh`
+
+- job 3: ablation: 5aug latent 128:
+
+    `bash run_jobs_docker_train_eval_8_4_3__5aug_latent_128.sh`
+
+- job 4: ablation: 5aug latent 32:
+
+    `bash run_jobs_docker_train_eval_8_4_4__5aug_latent_32.sh`
 
 
 
