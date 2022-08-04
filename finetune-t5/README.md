@@ -36,7 +36,7 @@ check if the image with name: `mirrors.tencent.com/ai-lab-seattle/mikeeewang_t0:
     `bash run_jobs_docker_7_30_4.sh`
 
 
-## [8/3 6:00pm]
+## [8/3 6:00pm] Experiments
 At the "/code" dir, run:
 
 - job 1: cont. eval 8_3_1:
