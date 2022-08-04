@@ -57,10 +57,25 @@ def get_dataset_name_2_if_origianl():
                 dataset_name_2_if_origianl[d] = False
     return dataset_name_2_if_origianl
 
-
+def process_over_length_augmentations(augmentations, target_length):
+    cands = augmentations[:target_length]
+    assert target_length < len(augmentations)
+    idx = target_length
+    for i in range(idx, len(augmentations)):
+        target_idx = i % target_length
+        cands[target_idx] = augmentations[i] + "\n" + cands[target_idx]
+    return cands
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Reproduce main evaluation in T0.")
+    parser.add_argument(
+        "--fit_aug_num",
+        type=int,
+        default=-1,
+        help=(
+            "if specified, fit how many augs into num_source_aug according to the model config "
+        ),
+    )
     parser.add_argument(
         "--model_architecture",
         type=str,
@@ -296,9 +311,18 @@ def main():
     logger.info("eval steps:")
     logger.info(ckpt_paths)
 
-    MAX_AUG_NUM = perceiver_config["num_aug_sources"]
-    logger.info(f"MAX_AUG_NUM:{MAX_AUG_NUM}")
-    
+    # MAX_AUG_NUM = perceiver_config["num_aug_sources"]
+    # logger.info(f"MAX_AUG_NUM:{MAX_AUG_NUM}")
+
+    MODEL_AUG_NUM = perceiver_config["num_aug_sources"]
+    if args.fit_aug_num != -1:
+        MAX_AUG_NUM = args.fit_aug_num
+        logger.info(f"specify MAX_AUG_NUM as fit_aug_num:{MAX_AUG_NUM}")
+    else:
+        MAX_AUG_NUM = MODEL_AUG_NUM
+        logger.info(f"Using MAX_AUG_NUM as MODEL_AUG_NUM: {MAX_AUG_NUM}")
+
+
     logger.info(f"if concat input text at each augmentation: {args.concat_input_at_augmentation}")
 
     ### main loop over step checkpoints
@@ -342,7 +366,9 @@ def main():
                         aug = input + "\n" + aug
                     augmentations.append(aug)
 
-                # ex_answer_choices = template.get_answer_choices_list(ex)
+                if len(augmentations) > MODEL_AUG_NUM:
+                    augmentations = process_over_length_augmentations(augmentations, MODEL_AUG_NUM)
+                
                 ex_answer_choices = ex['answer_choices']
                 try:
                     assert target in ex_answer_choices

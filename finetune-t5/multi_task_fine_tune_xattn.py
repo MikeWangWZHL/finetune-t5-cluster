@@ -70,6 +70,14 @@ def log_param_size(model, logger):
         logger.info(f"total params xattn: {tot_params_xattn}")
     logger.info(f"\n\n\n")
 
+def process_over_length_augmentations(augmentations, target_length):
+    cands = augmentations[:target_length]
+    assert target_length < len(augmentations)
+    idx = target_length
+    for i in range(idx, len(augmentations)):
+        target_idx = i % target_length
+        cands[target_idx] = augmentations[i] + "\n" + cands[target_idx]
+    return cands
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Fine-tuning T0 in PyTorch, optionally few-shot.")
@@ -262,6 +270,14 @@ def parse_args():
         default=512,
         help=(
             "augmentation max length"
+        ),
+    )
+    parser.add_argument(
+        "--fit_aug_num",
+        type=int,
+        default=-1,
+        help=(
+            "if specified, fit how many augs into num_source_aug according to the model config "
         ),
     )
     parser.add_argument(
@@ -700,8 +716,13 @@ def main():
 
     model = accelerator.prepare(model)
 
-    MAX_AUG_NUM = perceiver_config["num_aug_sources"]
-    logger.info(f"MAX_AUG_NUM:{MAX_AUG_NUM}")
+    MODEL_AUG_NUM = perceiver_config["num_aug_sources"]
+    if args.fit_aug_num != -1:
+        MAX_AUG_NUM = args.fit_aug_num
+        logger.info(f"specify MAX_AUG_NUM as fit_aug_num:{MAX_AUG_NUM}")
+    else:
+        MAX_AUG_NUM = MODEL_AUG_NUM
+        logger.info(f"Using MAX_AUG_NUM as MODEL_AUG_NUM: {MAX_AUG_NUM}")
     
     logger.info(f"if concat input text at each augmentation: {args.concat_input_at_augmentation}")
 
@@ -729,6 +750,9 @@ def main():
                 if args.concat_input_at_augmentation:
                     aug = input_text + "\n" + aug
                 augmentation_texts.append(aug)
+            
+            if len(augmentation_texts) > MODEL_AUG_NUM:
+                augmentation_texts = process_over_length_augmentations(augmentation_texts, MODEL_AUG_NUM)
 
             input_texts.append(input_text)
             target_texts.append(target_text)
@@ -788,7 +812,7 @@ def main():
             target = ex['targets_pretokenized'].strip()
             assert isinstance(ex['chosen_examples'],list)
             augmentations = []
-            for item in ex['chosen_examples']:
+            for item in ex['chosen_examples'][:MAX_AUG_NUM]:
                 aug = item["inputs_pretokenized"].strip()
                 if len(aug) < 2:
                     logger.info("WARNING: fall back to default aug: N/A")
@@ -796,6 +820,8 @@ def main():
                 if args.concat_input_at_augmentation:
                     aug = input + "\n" + aug
                 augmentations.append(aug)
+            if len(augmentations) > MODEL_AUG_NUM:
+                augmentations = process_over_length_augmentations(augmentations, MODEL_AUG_NUM)
             # ex_answer_choices = template.get_answer_choices_list(ex)
             ex_answer_choices = ex['answer_choices']
             try:
