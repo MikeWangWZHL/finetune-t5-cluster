@@ -27,10 +27,11 @@ from promptsource.templates import DatasetTemplates
 
 # from t0.data_collator import DataCollatorForMultipleChoice
 # use custom data collator to add indices
-import sys
-src_root = os.path.dirname(os.getcwd())
-TRAINING_DIR = os.path.join(src_root, 'training') # TODO
-sys.path.insert(1, TRAINING_DIR)
+# import sys
+# src_root = os.path.dirname(os.getcwd())
+# TRAINING_DIR = os.path.join(src_root, 'training') # TODO
+# sys.path.insert(1, TRAINING_DIR)
+
 from data_collator import DataCollatorForMultipleChoice
 # from t0.model import ModelBase
 

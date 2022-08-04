@@ -28,10 +28,11 @@ from yaml import load
 
 from caliberation import calibrate_probs, get_task_template_name, load_template_dict
 # use custom data collator to add indices
-import sys
-src_root = os.path.dirname(os.getcwd())
-TRAINING_DIR = os.path.join(src_root, 'training') # TODO
-sys.path.insert(1, TRAINING_DIR)
+# import sys
+# src_root = os.path.dirname(os.getcwd())
+# TRAINING_DIR = os.path.join(src_root, 'training') # TODO
+# sys.path.insert(1, TRAINING_DIR)
+
 from data_collator import DataCollatorForMultipleChoice, DataCollatorForMultipleChoiceXattn
 from modeling_t5 import (
     T5ForConditionalGenerationWithPerceiverResamplerXattnOnEncoder, 

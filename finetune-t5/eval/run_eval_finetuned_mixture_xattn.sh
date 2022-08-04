@@ -1,12 +1,12 @@
 
 ### set up ENV same as in ../SETUP_DOCKER_ENV.sh ###
-export DATA_ROOT="/data"
-export TRAINING_SRC_ROOT="/code/training"
-export EVAL_SRC_ROOT="/code/eval"
-export OUTPUT_SRC_ROOT="/code/output"
-export HF_DATASETS_OFFLINE=1
-export TRANSFORMERS_OFFLINE=1
-export HF_HOME=/cache/huggingface
+# export DATA_ROOT="/data"
+# export TRAINING_SRC_ROOT="/code/training"
+# export EVAL_SRC_ROOT="/code/eval"
+# export OUTPUT_SRC_ROOT="/code/output"
+# export HF_DATASETS_OFFLINE=1
+# export TRANSFORMERS_OFFLINE=1
+# export HF_HOME=/cache/huggingface
 ###################
 
 
@@ -27,7 +27,7 @@ OUTPUT_DIR=$4
 BS_EVAL=$8
 
 # accelerate launch --main_process_port 20655 eval_original_task_only_xattn.py \
-CUDA_VISIBLE_DEVICES=$5 accelerate launch --main_process_port $6 --num_processes $7 ./eval/eval_original_task_only_xattn.py \
+CUDA_VISIBLE_DEVICES=$5 accelerate launch --main_process_port $6 --num_processes $7 eval_original_task_only_xattn.py \
     --processed_dataset_paths ${DATASETS_DIR} \
     --model_name_or_path ${MODEL_PATH} \
     --saved_model_step ${STEP_NUM} \

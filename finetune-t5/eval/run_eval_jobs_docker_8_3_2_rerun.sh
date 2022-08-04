@@ -53,5 +53,5 @@ do
     ${CUDA_VISIBLE_DEVICES} \
     ${MAIN_PROCESS_PORT} \
     ${NUM_PROCESSES} \
-    6 # eval batch size
+    4 # eval batch size
 done

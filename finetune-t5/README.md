@@ -36,8 +36,18 @@ check if the image with name: `mirrors.tencent.com/ai-lab-seattle/mikeeewang_t0:
     `bash run_jobs_docker_7_30_4.sh`
 
 
-## [8/3]
+## [8/3 6:00pm]
+At the "/code" dir, run:
 
-- job 8_3_0
+- job 1: cont. eval 8_3_1:
+`bash ./eval/run_eval_jobs_docker_8_3_1_rerun.sh`
+
+- job 2: cont. eval 8_3_2:
+`bash ./eval/run_eval_jobs_docker_8_3_2_rerun.sh`
+
+- job 3: multitask shuffled version:
+`bash ./training/run_jobs_docker_train_eval_8_3_5.sh`
+
+
 
 
