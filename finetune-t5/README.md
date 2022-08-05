@@ -101,3 +101,10 @@ NOTE: dataset dir is updated, the following directory should be uploaded to clus
 
 - job 9: cross-task shuffle single task:
     `bash ./training/run_jobs_docker_train_eval_8_4_9__cross_shuffled_single_task.sh`
+
+
+## [8/5 11:30am] Experiments
+
+- job 0: FiD baseline with 5aug:
+
+    `bash ./training/run_jobs_docker_train_eval_8_5_0__5aug_FiD.sh`
