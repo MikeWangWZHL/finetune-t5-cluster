@@ -12,13 +12,9 @@ DATASET_ROOT=$2
 
 LR=$3
 BS=$4
-BS_EVAL=16
+BS_EVAL=4
 EP=$5
 N=${14}
-# BS=2
-# BS_EVAL=8
-# EP=15
-# N=-1
 
 
 K=0

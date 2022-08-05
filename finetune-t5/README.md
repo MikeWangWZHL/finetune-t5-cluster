@@ -73,6 +73,15 @@ At the "/code" dir, run:
     `bash ./training/run_jobs_docker_train_eval_8_4_4__5aug_latent_32.sh`
 
 
+## [8/4 5:30pm] Experiments
 
+NOTE: cache dir `/data2/mikeeewang/cluster_workdir/cache_for_docker` is updated with t5-large-lm-adapt checkpoint. Cluster needs to be synced.
+
+
+- job 5: t5-large 5aug:
+    `bash ./training/run_jobs_docker_train_eval_8_4_5__t5_large_5aug.sh`
+
+- job 6: t5-large no aug baseline:
+    `bash ./training/run_jobs_docker_train_eval_8_4_6__t5_large_baseline_no_aug.sh`
 
 
