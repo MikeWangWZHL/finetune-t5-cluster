@@ -47,6 +47,7 @@ from modeling_t5 import (
     T5ForConditionalGenerationWithPerceiverResamplerXattnOnEncoder, 
     T5ForConditionalGenerationSharedEncoderXattnOnDecoder,
     T5ForConditionalGenerationMultiAug,
+    T5ForConditionalGenerationFiD,
     T5ForConditionalGenerationMultiAug_DoubleGated,
     T5ForConditionalGenerationMultiAug_Base,
     T5ForConditionalGenerationMultiAug_AugScore,
@@ -63,8 +64,9 @@ os.environ['TOKENIZERS_PARALLELISM'] = "false"
 def log_param_size(model, logger):
     tot_params = sum(p.numel() for p in model.parameters())
     logger.info(f"total params: {tot_params}")
-    tot_params_perceiver = sum(p.numel() for p in model.perceiver_resampler.parameters())
-    logger.info(f"total params perceiver: {tot_params_perceiver}")
+    if hasattr(model, "xattn_stack"):
+        tot_params_perceiver = sum(p.numel() for p in model.perceiver_resampler.parameters())
+        logger.info(f"total params perceiver: {tot_params_perceiver}")
     if hasattr(model, "xattn_stack"):
         tot_params_xattn = sum(p.numel() for p in model.xattn_stack.parameters())
         logger.info(f"total params xattn: {tot_params_xattn}")
@@ -657,6 +659,9 @@ def main():
     elif args.model_architecture == 'SharedEncoderDecoder_MultiAug_FrozenAugEncoder':
         logger.info("init model with frozen aug encoder!!!")
         model_class_name = T5ForConditionalGenerationMultiAug_FrozenAugEncoder
+    elif args.model_architecture == 'FiD':
+        logger.info("init model with FiD architecture!!!")
+        model_class_name = T5ForConditionalGenerationFiD
     else:
         raise NotImplementedError
 

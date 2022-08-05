@@ -41,7 +41,8 @@ from modeling_t5 import (
     T5ForConditionalGenerationMultiAug,
     T5ForConditionalGenerationMultiAug_Base,
     T5ForConditionalGenerationMultiAug_DoubleGated,
-    T5ForConditionalGenerationMultiAug_FrozenAugEncoder
+    T5ForConditionalGenerationMultiAug_FrozenAugEncoder,
+    T5ForConditionalGenerationFiD
 )
 logger = logging.getLogger(__name__)
 
@@ -291,6 +292,9 @@ def main():
     elif args.model_architecture == 'SharedEncoderDecoder_MultiAug_FrozenAugEncoder':
         logger.info("init model with frozen aug encoder!!!")
         model_class_name = T5ForConditionalGenerationMultiAug_FrozenAugEncoder
+    elif args.model_architecture == 'FiD':
+        logger.info("init model with FiD architecture!!!")
+        model_class_name = T5ForConditionalGenerationFiD
     else:
         raise NotImplementedError
     model = model_class_name(
