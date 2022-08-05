@@ -89,3 +89,15 @@ NOTE: cache dir `/data2/mikeeewang/cluster_workdir/cache_for_docker` is updated 
 
 - job 7: t5-large 5aug v1 plus mixture:
     `bash ./training/run_jobs_docker_train_eval_8_4_7__t5_large_5aug_v1plus.sh`
+
+
+## [8/4 8:20pm] Experiments
+
+NOTE: dataset dir is updated, the following directory should be uploaded to cluster under "/data/p3_c4_document_level_chosen_examples": `/data2/mikeeewang/cluster_workdir/data/p3_c4_document_level_chosen_examples/30aug_cross_shuffled`
+
+
+- job 8: cross-task shuffle multi task:
+    `bash ./training/run_jobs_docker_train_eval_8_4_8__cross_shuffled.sh`
+
+- job 9: cross-task shuffle single task:
+    `bash ./training/run_jobs_docker_train_eval_8_4_9__cross_shuffled_single_task.sh`
