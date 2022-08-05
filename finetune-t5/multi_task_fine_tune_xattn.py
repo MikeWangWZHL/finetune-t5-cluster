@@ -756,6 +756,14 @@ def main():
                     aug = input_text + "\n" + aug
                 augmentation_texts.append(aug)
             
+            # handle corner case: no retrieved examples
+            if augmentation_texts == []:
+                logger.info("WARNING: no aug, default aug N/A")
+                if args.concat_input_at_augmentation:
+                    augmentation_texts = [input_text + "\n" + "N/A" for i in range(MAX_AUG_NUM)]
+                else:
+                    augmentation_texts = ["N/A" for i in range(MAX_AUG_NUM)]
+            
             if len(augmentation_texts) > MODEL_AUG_NUM:
                 augmentation_texts = process_over_length_augmentations(augmentation_texts, MODEL_AUG_NUM)
 
@@ -825,6 +833,15 @@ def main():
                 if args.concat_input_at_augmentation:
                     aug = input + "\n" + aug
                 augmentations.append(aug)
+            
+            # handle corner case: no retrieved examples
+            if augmentations == []:
+                logger.info("WARNING: no aug, default aug N/A")
+                if args.concat_input_at_augmentation:
+                    augmentations = [input + "\n" + "N/A" for i in range(MAX_AUG_NUM)]
+                else:
+                    augmentations = ["N/A" for i in range(MAX_AUG_NUM)]
+            
             if len(augmentations) > MODEL_AUG_NUM:
                 augmentations = process_over_length_augmentations(augmentations, MODEL_AUG_NUM)
             # ex_answer_choices = template.get_answer_choices_list(ex)

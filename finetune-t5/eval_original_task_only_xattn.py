@@ -369,7 +369,15 @@ def main():
                     if args.concat_input_at_augmentation:
                         aug = input + "\n" + aug
                     augmentations.append(aug)
-
+                
+                # handle corner case: no retrieved examples
+                if augmentations == []:
+                    logger.info("WARNING: no aug, default aug N/A")
+                    if args.concat_input_at_augmentation:
+                        augmentations = [input + "\n" + "N/A" for i in range(MAX_AUG_NUM)]
+                    else:
+                        augmentations = ["N/A" for i in range(MAX_AUG_NUM)]
+                
                 if len(augmentations) > MODEL_AUG_NUM:
                     augmentations = process_over_length_augmentations(augmentations, MODEL_AUG_NUM)
                 

@@ -13,6 +13,7 @@ MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
 # CUDA_VISIBLE_DEVICES=4,5,6,7
 # MAIN_PROCESS_PORT=20655
 # NUM_PROCESSES=4
+# MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
 # MIXTURE="dream qasc"
 
 # MIXTURE="dream"
