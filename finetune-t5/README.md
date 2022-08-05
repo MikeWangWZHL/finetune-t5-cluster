@@ -85,3 +85,7 @@ NOTE: cache dir `/data2/mikeeewang/cluster_workdir/cache_for_docker` is updated 
     `bash ./training/run_jobs_docker_train_eval_8_4_6__t5_large_baseline_no_aug.sh`
 
 
+## [8/4 6:20pm] Experiments
+
+- job 7: t5-large 5aug v1 plus mixture:
+    `bash ./training/run_jobs_docker_train_eval_8_4_7__t5_large_5aug_v1plus.sh`
