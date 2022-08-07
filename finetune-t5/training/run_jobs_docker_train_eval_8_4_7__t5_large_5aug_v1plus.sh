@@ -37,24 +37,24 @@ MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa wiki_qa t
     # --gradient_accumulation_step # default = 1
 #############################
 
-bash ./training/run_xttn_with_multiple_knowlege_augmentation_offline_.sh \
-"${MIXTURE}" \
-"${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
-0.0001 \
-1 \
-10 \
-"google/t5-large-lm-adapt" \
-"${TRAINING_SRC_ROOT}/perceiver_configs/xattn_multi_aug_config_v1_v3_5aug_t5_large.json" \
-"${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_4_7__t5_large_5aug_v1plus/8_4_multitask_mixture_mulcqa_n_2_c4_5percent_5aug_t5_large_v1plus" \
-"not_using_wandb" \
-${CUDA_VISIBLE_DEVICES} \
-${MAIN_PROCESS_PORT} \
-${NUM_PROCESSES} \
-"SharedEncoderDecoder_MultiAug" \
-2 \
-1 # gradient_accumulation_step
+# bash ./training/run_xttn_with_multiple_knowlege_augmentation_offline_.sh \
+# "${MIXTURE}" \
+# "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
+# 0.0001 \
+# 1 \
+# 10 \
+# "google/t5-large-lm-adapt" \
+# "${TRAINING_SRC_ROOT}/perceiver_configs/xattn_multi_aug_config_v1_v3_5aug_t5_large.json" \
+# "${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_4_7__t5_large_5aug_v1plus/8_4_multitask_mixture_mulcqa_n_2_c4_5percent_5aug_t5_large_v1plus" \
+# "not_using_wandb" \
+# ${CUDA_VISIBLE_DEVICES} \
+# ${MAIN_PROCESS_PORT} \
+# ${NUM_PROCESSES} \
+# "SharedEncoderDecoder_MultiAug" \
+# 2 \
+# 1 # gradient_accumulation_step
 
-echo "done learning rate"
+# echo "done learning rate"
 
 
 ### input format ###
@@ -78,5 +78,5 @@ do
     ${CUDA_VISIBLE_DEVICES} \
     ${MAIN_PROCESS_PORT} \
     ${NUM_PROCESSES} \
-    2 # eval batch size
+    1 # eval batch size
 done
