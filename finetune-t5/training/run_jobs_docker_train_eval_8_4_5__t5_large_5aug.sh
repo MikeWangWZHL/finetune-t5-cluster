@@ -4,16 +4,16 @@
 ### set up env vairables ###
 source SETUP_DOCKER_ENV.sh
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-MAIN_PROCESS_PORT=20655
-NUM_PROCESSES=8
-MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
+# CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+# MAIN_PROCESS_PORT=20655
+# NUM_PROCESSES=8
+# MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
 
 ## debug
-# CUDA_VISIBLE_DEVICES=4,5,6,7
-# MAIN_PROCESS_PORT=20655
-# NUM_PROCESSES=4
-# MIXTURE="dream qasc"
+CUDA_VISIBLE_DEVICES=4,5,6,7
+MAIN_PROCESS_PORT=20655
+NUM_PROCESSES=4
+MIXTURE="dream qasc"
 
 # MIXTURE="dream"
 
@@ -68,7 +68,7 @@ MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
     # eval_batch $8
 ##############################
 
-for TASK_NAME in "openbookqa_main" "piqa" "super_glue_wic" "super_glue_cb" "super_glue_copa" "rotten_tomatoes" "wiki_qa" "hellaswag"
+for TASK_NAME in "openbookqa_main" "piqa" "super_glue_wic" "super_glue_cb" "super_glue_copa" "rotten_tomatoes" "hellaswag" #"wiki_qa"
 do
     bash ./eval/run_eval_finetuned_mixture_xattn.sh \
     ${TASK_NAME} \
