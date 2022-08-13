@@ -108,3 +108,14 @@ NOTE: dataset dir is updated, the following directory should be uploaded to clus
 - job 0: FiD baseline with 5aug:
 
     `bash ./training/run_jobs_docker_train_eval_8_5_0__5aug_FiD.sh`
+
+
+## [8/12 5:50pm] Experiments
+
+- job 0: FiD baseline t5-large 5aug:
+
+    `bash ./training/run_jobs_docker_train_eval_8_12_0__5aug_FiD_large.sh`
+
+- job 1: Concat baseline t5-large 5aug:
+
+    `bash ./training/run_jobs_docker_train_eval_8_12_1__t5_large_concat_baseline.sh`

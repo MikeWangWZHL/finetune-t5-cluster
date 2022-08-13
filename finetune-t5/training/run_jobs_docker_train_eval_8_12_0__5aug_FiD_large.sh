@@ -4,16 +4,16 @@
 ### set up env vairables ###
 source SETUP_DOCKER_ENV.sh
 
-# CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-# MAIN_PROCESS_PORT=20655
-# NUM_PROCESSES=8
-# MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+MAIN_PROCESS_PORT=20655
+NUM_PROCESSES=8
+MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
 
 ## debug
-CUDA_VISIBLE_DEVICES=4,5,6,7
-MAIN_PROCESS_PORT=20655
-NUM_PROCESSES=4
-MIXTURE="dream qasc"
+# CUDA_VISIBLE_DEVICES=4,5,6,7
+# MAIN_PROCESS_PORT=20655
+# NUM_PROCESSES=4
+# MIXTURE="dream qasc"
 
 # MIXTURE="dream"
 
@@ -37,7 +37,7 @@ MIXTURE="dream qasc"
     # --gradient_accumulation_step # default = 1
 #############################
 
-bash ./training/run_xttn_with_multiple_knowlege_augmentation_offline_.sh \
+bash ./training/run_xttn_with_multiple_knowlege_augmentation_offline_FiD_.sh \
 "${MIXTURE}" \
 "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
 0.0001 \
@@ -45,16 +45,16 @@ bash ./training/run_xttn_with_multiple_knowlege_augmentation_offline_.sh \
 10 \
 "google/t5-large-lm-adapt" \
 "${TRAINING_SRC_ROOT}/perceiver_configs/xattn_multi_aug_config_v1_v3_5aug_t5_large.json" \
-"${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_4_5__t5_large_5aug/8_4_multitask_mixture_mulcqa_n_2_c4_5percent_5aug_t5_large" \
+"${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_12_0__5aug_FiD_large/8_12_5aug_FiD_baseline_t5_large" \
 "not_using_wandb" \
 ${CUDA_VISIBLE_DEVICES} \
 ${MAIN_PROCESS_PORT} \
 ${NUM_PROCESSES} \
-"SharedEncoderDecoder_MultiAug" \
+"FiD" \
 2 \
 1 # gradient_accumulation_step
 
-echo "done learning rate"
+echo "done FiD training"
 
 
 ### input format ###
@@ -68,13 +68,13 @@ echo "done learning rate"
     # eval_batch $8
 ##############################
 
-for TASK_NAME in "openbookqa_main" "piqa" "super_glue_wic" "super_glue_cb" "super_glue_copa" "rotten_tomatoes" "hellaswag" #"wiki_qa"
+for TASK_NAME in "openbookqa_main" "piqa" "super_glue_wic" "super_glue_cb" "super_glue_copa" "rotten_tomatoes" "hellaswag"
 do
-    bash ./eval/run_eval_finetuned_mixture_xattn.sh \
+    bash ./eval/run_eval_finetuned_mixture_xattn_FiD.sh \
     ${TASK_NAME} \
     "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
-    "${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_4_5__t5_large_5aug/8_4_multitask_mixture_mulcqa_n_2_c4_5percent_5aug_t5_large" \
-    "${OUTPUT_SRC_ROOT}/eval/run_jobs_docker_train_eval_8_4_5__t5_large_5aug/8_4_multitask_mixture_mulcqa_n_2_c4_5percent_5aug_t5_large/${TASK_NAME}" \
+    "${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_12_0__5aug_FiD_large/8_12_5aug_FiD_baseline_t5_large" \
+    "${OUTPUT_SRC_ROOT}/eval/run_jobs_docker_train_eval_8_12_0__5aug_FiD_large/8_12_5aug_FiD_baseline_t5_large/${TASK_NAME}" \
     ${CUDA_VISIBLE_DEVICES} \
     ${MAIN_PROCESS_PORT} \
     ${NUM_PROCESSES} \
