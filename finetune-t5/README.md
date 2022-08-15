@@ -119,3 +119,12 @@ NOTE: dataset dir is updated, the following directory should be uploaded to clus
 - job 1: Concat baseline t5-large 5aug:
 
     `bash ./training/run_jobs_docker_train_eval_8_12_1__t5_large_concat_baseline.sh`
+
+
+## [8/15 2:00pm] Experiments
+
+- job 0: 1aug
+    `bash ./training/run_jobs_docker_train_eval_8_15_0__1aug_latent_64.sh`
+
+- job 1: 3aug
+    `bash ./training/run_jobs_docker_train_eval_8_15_1__3aug_latent_64.sh`
