@@ -30,24 +30,24 @@ MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
     # --gradient_accumulation_step # default = 1
 ####################################
 
-echo ${MIXTURE}
+# echo ${MIXTURE}
 
-bash ./training/run_mixture_baseline_offline.sh \
-"${MIXTURE}" \
-"${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
-"google/t5-large-lm-adapt" \
-0.0001 \
-1 \
-10 \
-2 \
-"${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_12_1__t5_large_concat_baseline/8_12_multitask_mixture_mulcqa_n_2_c4_5percent_t5_large_concat" \
-"not_using_wandb" \
-5 \
-${CUDA_VISIBLE_DEVICES} \
-${MAIN_PROCESS_PORT} \
-${NUM_PROCESSES} \
-1
-echo "done t5-large 5aug concat"
+# bash ./training/run_mixture_baseline_offline.sh \
+# "${MIXTURE}" \
+# "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
+# "google/t5-large-lm-adapt" \
+# 0.0001 \
+# 1 \
+# 10 \
+# 2 \
+# "${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_12_1__t5_large_concat_baseline/8_12_multitask_mixture_mulcqa_n_2_c4_5percent_t5_large_concat" \
+# "not_using_wandb" \
+# 5 \
+# ${CUDA_VISIBLE_DEVICES} \
+# ${MAIN_PROCESS_PORT} \
+# ${NUM_PROCESSES} \
+# 1
+# echo "done t5-large 5aug concat"
 
 
 #####

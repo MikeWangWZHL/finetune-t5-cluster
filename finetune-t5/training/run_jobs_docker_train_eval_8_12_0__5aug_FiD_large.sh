@@ -37,24 +37,24 @@ MIXTURE="cos_e_v1.11 cosmos_qa dream qasc quartz sciq social_i_qa wiqa"
     # --gradient_accumulation_step # default = 1
 #############################
 
-bash ./training/run_xttn_with_multiple_knowlege_augmentation_offline_FiD_.sh \
-"${MIXTURE}" \
-"${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
-0.0001 \
-1 \
-10 \
-"google/t5-large-lm-adapt" \
-"${TRAINING_SRC_ROOT}/perceiver_configs/xattn_multi_aug_config_v1_v3_5aug_t5_large.json" \
-"${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_12_0__5aug_FiD_large/8_12_5aug_FiD_baseline_t5_large" \
-"not_using_wandb" \
-${CUDA_VISIBLE_DEVICES} \
-${MAIN_PROCESS_PORT} \
-${NUM_PROCESSES} \
-"FiD" \
-2 \
-1 # gradient_accumulation_step
+# bash ./training/run_xttn_with_multiple_knowlege_augmentation_offline_FiD_.sh \
+# "${MIXTURE}" \
+# "${DATA_ROOT}/p3_c4_document_level_chosen_examples/30aug" \
+# 0.0001 \
+# 1 \
+# 10 \
+# "google/t5-large-lm-adapt" \
+# "${TRAINING_SRC_ROOT}/perceiver_configs/xattn_multi_aug_config_v1_v3_5aug_t5_large.json" \
+# "${OUTPUT_SRC_ROOT}/p3_finetuning/run_jobs_docker_train_eval_8_12_0__5aug_FiD_large/8_12_5aug_FiD_baseline_t5_large" \
+# "not_using_wandb" \
+# ${CUDA_VISIBLE_DEVICES} \
+# ${MAIN_PROCESS_PORT} \
+# ${NUM_PROCESSES} \
+# "FiD" \
+# 2 \
+# 1 # gradient_accumulation_step
 
-echo "done FiD training"
+# echo "done FiD training"
 
 
 ### input format ###
